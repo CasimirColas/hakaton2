@@ -1,8 +1,8 @@
 import { DynamoDBClient,GetItemCommand } from "@aws-sdk/client-dynamodb";
-import awsConfig from "../connection";
+import awsConfig from "../connection.js";
 const ddbClient = new DynamoDBClient(awsConfig);
 
-async function getUserByEmail(email:string){
+async function getUserByEmail(email){
     const params = {
         TableName:'sherlockationUsers',
         Key:{
