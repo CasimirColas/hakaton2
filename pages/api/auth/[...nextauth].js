@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import getUserByEmail from "../../../dynamodb/function/read";
 
 export default NextAuth({
   session: {
@@ -9,21 +10,28 @@ export default NextAuth({
     CredentialsProvider({
       type: "credentials",
       credentials: {},
-      async authorize(credentials, req) {
-        const { email, password } = credentials as {
-          email: string;
-          password: string;
-        };
-        return null
+      async authorize(credentials) {
+        const { email, password } = credentials 
+        const myUser = await getUserByEmail(email);
+        if(!myUser){
+          throw new Error("User not found");
+        }
+        if(myUser.password.S===password){
+          return {
+            email:myUser.email.S,
+            role:myUser.role.S,
+          }
+        }else{
+          throw new Error("Incorrect password");
+        }
       },
     }),
   ],
   callbacks: {
     jwt({ token, user }) {
       // update token
-      if (user?.role && user?.id) {
+      if (user?.role) {
         token.role = user.role;
-        token.id = user.id;
       }
       // return final_token
       return token;
