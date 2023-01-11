@@ -1,5 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import IndexBaseCard from "../components/cards/cardIndex";
+import FeaturedCard from "../components/cards/cardFeatured";
 
 export default function Home() {
   return (
