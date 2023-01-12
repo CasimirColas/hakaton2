@@ -1,3 +1,96 @@
-main{
-    
-}
+.globalContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .formBox {
+    background-color: #D9D9D9CC;
+    border-radius: 20px;
+    width: 95%;
+    max-width: 60vh;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .signInButton {
+    cursor: pointer;
+    background: #33363F;
+    color: white;
+    width: 40%;
+    border: 3px solid #33363F;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    height: 5vh;
+  }
+  
+  .signInButton:hover {
+    background-color: #D65A00;
+    color: #D65A00;
+  }
+  .orange {
+    color: #D65A00;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .inputField {
+    background: white;
+    border-radius: 10px;
+    border: none;
+    height: 6vh;
+    margin-block: 1vh;
+    outline: none;
+    width: 95%;
+    padding-left: 2vh;
+    font-size: 1.8rem;
+    min-width: 95%;
+  }
+  .hideline {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+  .title {
+    display: flex;
+    width: 100%;
+  }
+  
+  .bienvenue {
+    text-align: center;
+    padding-block: 5%;
+    font-size: 2rem;
+    min-width: 100%;
+  }
+  .formRow {
+    margin-top: 1vh;
+    width: 90%;
+  }
+  .switchButton {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2%;
+  }
+  .fieldLabel {
+    font-size: 1.5rem;
+    align-self: center;
+  }
+  
+  .arrowIcon {
+    cursor: pointer;
+    color: #d9d9d9;
+    font-size: 50px;
+    position: relative;
+    right: 90%;
+    padding-block: 5%;
+  }
+  .arrowIcon:hover {
+    color: darkgray;
+  }
+  .pass {
+    position: relative;
+    right: 50px;
+    height: 40px;
+  }
