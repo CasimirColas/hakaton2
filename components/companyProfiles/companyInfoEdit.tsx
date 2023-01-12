@@ -14,8 +14,12 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SendIcon from "@mui/icons-material/Send";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CompanyInfo from "./companyInfo";
+import updateUser from "../../dynamodb/functionUser/update";
+interface Company {
+  email: string;
+}
 
-export default function CompanyInfoEdit() {
+export default function CompanyInfoEdit(props: Company) {
   const stylePaper: object = {
     sx: { bgcolor: "primary.main", borderRadius: "20px 0 0 20px" },
   };
@@ -51,17 +55,6 @@ export default function CompanyInfoEdit() {
     } else {
       setError(true);
       setCompanyName("");
-    }
-  }
-  const [email, setEmail] = React.useState("");
-  const [error1, setError1] = React.useState(false);
-  function handleEmail(value: string) {
-    if (/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(value) || value === "") {
-      setEmail(value);
-      setError1(false);
-    } else {
-      setError1(true);
-      setEmail("");
     }
   }
   const [number, setNumber] = React.useState("");
@@ -141,16 +134,27 @@ export default function CompanyInfoEdit() {
     }
   }
 
-  const infoToSend: object = {
+  interface Company {
+    companyName: string;
+    email: string;
+    phone: string;
+    password: string;
+    adress: string;
+    city: string;
+    website: string;
+  }
+  const infoToSend: Company = {
     companyName: companyName,
-    email: email,
+    email: props.email,
     phone: number,
     password: password,
     adress: adress,
     city: city,
     website: website,
   };
-
+  function EditProfile(email: string, obj: Company) {
+    updateUser(email, obj);
+  }
   const list = () => (
     <Box
       sx={{
@@ -197,19 +201,6 @@ export default function CompanyInfoEdit() {
               helperText={error ? "Only letters and numbers" : ""}
               sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
               onChange={(e) => handleCompanyName(e.target.value)}
-            />
-            <TextField
-              color="secondary"
-              size="small"
-              id="Email"
-              label="Email"
-              helperText={
-                error1
-                  ? "Enter a correct Email form like : example@example.com"
-                  : ""
-              }
-              sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
-              onChange={(e) => handleEmail(e.target.value)}
             />
             <TextField
               color="secondary"
@@ -273,6 +264,7 @@ export default function CompanyInfoEdit() {
               alignItems: "center",
             }}
             variant="text"
+            onClick={() => EditProfile(props.email, infoToSend)}
           >
             <Typography sx={{ m: ".5rem" }}>Send</Typography>
             <SendIcon />

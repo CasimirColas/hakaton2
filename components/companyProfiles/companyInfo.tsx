@@ -9,11 +9,10 @@ interface Company {
   city: string;
   website: string;
 }
-
 export default function CompanyInfo() {
   const company: Company = {
     companyName: "Wild Car Service",
-    email: "best-car@wsc.com",
+    email: "company@companyemail.com",
     phone: "06 51 12 26 67",
     adress: "88 rue Mils Haleur",
     city: "Strasbourg",

@@ -53,7 +53,6 @@ export default function HiredNow(props: Company) {
   function handleClose() {
     setOpen(false);
   }
-  const [checked, setChecked] = React.useState(true);
   const [refresh, setRefresh] = React.useState(true);
   function handleChange(value: string) {
     if (value === "D") {

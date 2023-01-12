@@ -22,7 +22,7 @@ function CompanyProfile() {
         overflow: "scroll",
       }}
     >
-      <CompanyInfoEdit />
+      <CompanyInfoEdit email="company@companyemail.com" />
       <Box
         className="companyInformation"
         sx={{
