@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import getUserByEmail from "../../../dynamodb/function/read";
+import getUserByEmail from "../../../dynamodb/functionUser/read";
 
 export default NextAuth({
   session: {

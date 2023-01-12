@@ -2,15 +2,16 @@ import { DynamoDBClient,GetItemCommand } from "@aws-sdk/client-dynamodb";
 import awsConfig from "../connection.js";
 const ddbClient = new DynamoDBClient(awsConfig);
 
-async function getUserByEmail(email){
+async function getCarById(id){
+    const strId = await id.toString()
     const params = {
-        TableName:'sherlockationUsers',
+        TableName:'sherlockationCars',
         Key:{
-            email:{S:email}
+            id:{S:strId}
         }
     }
         const data = await ddbClient.send(new GetItemCommand(params))
         return data.Item
 }
 
-export default getUserByEmail;
+export default getCarById;

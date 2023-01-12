@@ -2,9 +2,9 @@
 const awsConfig = {
     region: "eu-west-1",
     credentials: {
-        accessKeyId: "ASIAQAAHJZ7R2SYS4M4O",
-        secretAccessKey: "9SdzpsgXnYa91s6U9zTjLd09VRrXBjyIZFR7jYK1",
-        sessionToken:"IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCIGi/mnX3JJODoZ7fr8Xr+almDf5zct6F/QEwJdbn6Wd9AiEA2D7bVmfhuolTHsa0NYuNIYdXc2l8W+l4APTAlzeXjwgqngIIo///////////ARAAGgwwMDAwMTUzMjMxMDciDD+NnXHV51u0B69ekiryAQyS05W7zGdBX3JS/3+85H/zGPyo5xFiT6FaEGt23VjCJ3fjXXQMRiwEkGFnXwGzDCfYTOnHI5Jz59fohiZbvQgyfEZsiRBWQlkAqfeGHz7P8NdCxuZYfWpQ5o1C+x7nswAwjgWTcoUJ0CyT+GXRMJKVcuHWBVpfbmad9lPGmuMfjZpsKmrh5+yUwfua8pmj2637nQpZ+LQWwO1+7ULAvvSL9+cY0eu8FFYyQATY7fsoqvVz+48gEE4r3VjE4+ph5LELAuLtDrpcYXxMoWUuNrmscIiTGciZRB3QPBNr+zY0nj8tTXse0XPApIwHLHcAE7/mMKqS+p0GOp8By/X4gWqsxQQlS+LKxuH1l4uR3ST76EzoqHfXr902/+hjp/5mut3zhhbs0g5JTCxn7OB4ut8TnzPwQeFZwBetYjU+xAtGbjLHWPszb6/UNS5/CC9Q26y4CDWa2Cgi3oCKCvetiCbfkFaV39fz4PIHnOZVWZfmj0mt/whx4nIwkKwsUJwvbuu/j/O8h7OS99s1ZUbdTLOdh1+nBEjJlRV+"
+        accessKeyId: "ASIAQAAHJZ7RRNSQ6CGI",
+        secretAccessKey: "ljfwwNx/eZqfhapyZ2p56+vP0d7XfX5f2ZA3jRpN",
+        sessionToken:"IQoJb3JpZ2luX2VjEGEaCXVzLWVhc3QtMSJHMEUCIAYAUU5bF3HOBC+YbFcP5LtscehoWtlruMVPh7VhfhJ1AiEAhFiHukiWW3jmJ64B+YkomlMBuEf9EZAmaq+YUObZUvQqngIIuf//////////ARAAGgwwMDAwMTUzMjMxMDciDNf30PcxSlHWovOEJiryATa0Ugnnv+aerzWMRGl2CwdQ98ATfmGx15tNQIEO85g/yaX0WeAy//jQ8pvQXO/+xf2qhjqcVO0hMNso123rm87aB1QZP3aGVlr0t2JlUxUD5N7OZ3hWe6nsRh6vth+S1AhnV7qEhno4ueg6FGnta14gfOUOvBEKF11Vw3Bqu03USO+L2S3pgKri62jyxM1c8D2QhAJuoOwSYuQOoZfiPkONfjGspP9RX5/XwUA3DnTYfMSjIeyT7XXlCg7Rga3apvPzAToyIl0/lxlBD6YvqxcEEb6M7ZzaTYFJ8lgvHq6Z8SPSHpBF9EI2iqUxa4Juh5xaMM///p0GOp8BZ+uYp1X2+3IbAf7G1TjNlc6JLXV/69iD5q2iktDzzq66oUqiOkLp3z7KYZ1iAM/46dyq+Cyb4lwFPRfVcQTJ2n+i5B/dq2xqd/wjYFMlw0hHvZ1VA8OpB3/hpdg7T0u2AgQE7LcctHHzp+DzUAQp2ajfidE8B0X4OcDQBiaTx0KJuZ1R/YHxgJPjf078nX3fSTigjGoyElnmOWcVCP6h"
     },
 }
 
