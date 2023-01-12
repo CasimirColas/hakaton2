@@ -1,9 +1,8 @@
-import DashboardLayout from '../../components/Dashboard/DashboardLayout';
-import Users from './users';
+import DashboardProfil from '../../components/Dashboard/DashboardProfil';
 
 function AdminDashboard() {
   return <div>
-    <DashboardLayout />
+    <DashboardProfil />
   </div>;
 }
 

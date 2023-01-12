@@ -60,7 +60,7 @@ function realEnergy(letter:string) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {car.brand}  |  {car.name}
+          {car.brand}  |  {car.carName}
         </Typography>
       </CardContent>
       <Box sx={{display: "flex", justifyContent: "space-between"}}>

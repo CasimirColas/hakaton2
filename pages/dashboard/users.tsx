@@ -1,10 +1,8 @@
-import DashboardLayout from '../../components/Dashboard/DashboardLayout';
-import ListUsers from '../../components/Dashboard/listUsers';
+import DashboardUsers from '../../components/Dashboard/DashboardUsers';
 
 function Users() {
   return <div>
-    <DashboardLayout />
-    <ListUsers />
+    <DashboardUsers />
   </div>;
 }
 

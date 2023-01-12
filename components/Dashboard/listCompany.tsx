@@ -40,30 +40,12 @@ const columns: GridColDef[] = [
         headerName: 'Cost',
         width: 80,
         editable: true,
-      },
-      {
-        field: 'type',
-        headerName: 'Type',
-        width: 80,
-        editable: true,
-      },
-      {
-        field: 'gearbox',
-        headerName: 'Gearbox',
-        width: 80,
-        editable: true,
-      },
-      {
-        field: 'energy',
-        headerName: 'energy',
-        width: 80,
-        editable: true,
-      },
+      }
   ];
 
   
 
-function ListUsers() {
+function ListCompany() {
 
     
     const { data, error, isLoading } = useSWR('/api/cars', fetcher)
@@ -72,20 +54,21 @@ function ListUsers() {
     if (isLoading) return <div>loading...</div>
     console.log(data)
 
-    const rows = data.map((user:any) =>({
-        id:user.id,
-        CompanyName:user.companyName,
-        carName:user.carName,
-        carStatus:user.carStatus,
-        cost:user.cost,
-        type:user.type,
-        gearbox:user.gearbox,
-        energy:user.enrgy
+    const rows = data.map((car:any) =>({
+        id:car.id,
+        Brand:car.brand,
+        CompanyName:car.companyName,
+        carName:car.carName,
+        carStatus:car.carStatus,
+        cost:car.cost,
+        type:car.type,
+        gearbox:car.gearbox,
+        energy:car.enrgy
     } ))
 
     return (
         <Box sx={{ height: '88vh', width: '100%' }}>
-            <Typography variant="h2">Users List</Typography>
+            <Typography variant="h2">Company List</Typography>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -99,4 +82,4 @@ function ListUsers() {
     )
   }
   
-  export default ListUsers;
+  export default ListCompany;

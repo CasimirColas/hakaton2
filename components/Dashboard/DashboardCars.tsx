@@ -5,8 +5,8 @@ import Header from './Header';
 import SideBar from './SideBar';
 import ListCars from './listCars';
 
-function DashboardLayout({ children }) {
-  // const [mobileOpen, setMobileOpen] = useState(false);
+function DashboardCars({ children }) {
+
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -25,14 +25,14 @@ function DashboardLayout({ children }) {
         }}
       >
         {children}
-        <ListCars />
+        <ListCars/>
       </Box>
     </Stack>
   );
 }
 
-DashboardLayout.propTypes = {
+DashboardCars.propTypes = {
   children: PropTypes.node,
 };
 
-export default DashboardLayout;
+export default DashboardCars;

@@ -1,9 +1,9 @@
-import DashboardLayout from '../../components/Dashboard/DashboardLayout';
+import DashboardCars from '../../components/Dashboard/DashboardCars';
 import React, { useState } from 'react';
 
 function Cars() {
   return <div>
-    <DashboardLayout />
+    <DashboardCars />
   </div>;
 }
 

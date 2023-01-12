@@ -1,8 +1,8 @@
-import DashboardLayout from '../../components/Dashboard/DashboardLayout';
+import DashboardCompany from '../../components/Dashboard/DashboardCompany';
 
 function Company() {
   return <div>
-    <DashboardLayout />
+    <DashboardCompany />
   </div>;
 }
 

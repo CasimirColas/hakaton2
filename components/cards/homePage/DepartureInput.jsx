@@ -30,7 +30,7 @@ function DepartureInput({ departureAddress, handleDeparture, geoLocLoading, hand
       }}
     >
       <TextField
-        label="Départ"
+        label="Localization"
         variant="standard"
         inputRef={departureRef}
         // data-cy="departure-input"

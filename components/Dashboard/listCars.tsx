@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Typography } from '@mui/material';
 import useSWR from 'swr';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
@@ -18,38 +18,38 @@ const columns: GridColDef[] = [
       editable: true,
     },
     {
-      field: 'Company Name',
-      headerName: 'Company Name',
+      field: 'CompanyName',
+      headerName: 'CompanyName',
       width: 150,
       editable: true,
     },
     {
-      field: 'Name',
-      headerName: 'Name',
+      field: 'carName',
+      headerName: 'CarName',
       width: 110,
       editable: true,
     },
     {
-        field: 'Status',
+        field: 'carStatus',
         headerName: 'Status',
         width: 80,
         editable: true,
       },
       {
-        field: 'Cost',
+        field: 'cost',
         headerName: 'Cost',
         width: 80,
         editable: true,
       },
       {
-        field: 'Type',
+        field: 'type',
         headerName: 'Type',
         width: 80,
         editable: true,
       },
       {
-        field: 'GearBox',
-        headerName: 'GearBox',
+        field: 'gearbox',
+        headerName: 'Gearbox',
         width: 80,
         editable: true,
       },
@@ -62,25 +62,31 @@ const columns: GridColDef[] = [
   ];
 
   
-//   const rows = [
-//     {data.map((car:any) => (
-//         {Brand:{car.brand}}
-//      ))}
-    // { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-//   ];
+
 function ListCars() {
 
     
     const { data, error, isLoading } = useSWR('/api/cars', fetcher)
     
-    
-
     if (error) return <div>failed to load</div>
     if (isLoading) return <div>loading...</div>
     console.log(data)
 
+    const rows = data.map((car:any) =>({
+        id:car.id,
+        Brand:car.brand,
+        CompanyName:car.companyName,
+        carName:car.carName,
+        carStatus:car.carStatus,
+        cost:car.cost,
+        type:car.type,
+        gearbox:car.gearbox,
+        energy:car.enrgy
+    } ))
+
     return (
-        <Box sx={{ height: '88vh', width: '100%' }}>
+        <Box sx={{ height: '90vh', width: '100%' }}>
+            <Typography variant="h2">Cars List</Typography>
       <DataGrid
         rows={rows}
         columns={columns}
