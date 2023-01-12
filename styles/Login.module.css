@@ -1,0 +1,120 @@
+.globalContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .formBox {
+    background-color: #D9D9D9CC;
+    border-radius: 20px;
+    width: 95%;
+    max-width: 60vh;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .outsideLogin {
+    width: 85%;
+    display: flex;
+    align-items: center;
+    height: 7%;
+  }
+  .inputField {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    height: 8%;
+  }
+  .startItems {
+    align-self: start;
+    display: flex;
+    gap: 15px;
+  }
+  .inputField input {
+    text-indent: 10px;
+    background: white;
+    border-radius: 10px;
+    border: none;
+    min-width: 100%;
+    min-height: 80%;
+    font-size: 1rem;
+  }
+  .inputField label {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .connection {
+    cursor: pointer;
+    background-color: #33363F;
+    border: 3px solid #33363F;
+    color: white;
+    border-radius: 10px;
+    height: 7%;
+    width: 85%;
+    font-size: 1.5rem;
+  }
+  .connection:hover {
+    border: 3px solid #D65A00;
+    color: #D65A00;
+  }
+  .title {
+    display: flex;
+    width: 85%;
+    margin-top: 5%;
+  }
+  .title h1 {
+    min-width: 100%;
+    text-align: center;
+  }
+  .noAccount {
+    display: flex;
+  }
+  .orange {
+    color: #D65A00;
+  }
+  .stayLogged {
+    display: flex;
+    width: 85%;
+  }
+  .noAccount {
+    margin-bottom: 5%;
+  }
+  .link {
+    color: #D65A00;
+  }
+  .link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .passwordLine {
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+  }
+  .passwordField{
+    min-width: 100%;
+  }
+
+  .context {
+    position: relative;
+    right: 95%;
+    pointer-events: none;
+  }
+  .eyeIcon {
+    position: relative;
+    right: 15%;
+    height: 40px;
+  }
+  .arrowIcon {
+    cursor: pointer;
+    color: #33363F;
+    font-size: 50px;
+    position: relative;
+    right: 105%;
+  }
+  .arrowIcon:hover {
+    color: #D65A00;
+  }
