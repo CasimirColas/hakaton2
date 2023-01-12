@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Box, Button } from "@mui/material";
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import Form from './homePage/form';
+import Form from '../cards/homePage/form';
 
 function IndexBaseCard() {
   return (
@@ -17,6 +17,10 @@ function IndexBaseCard() {
             </Button>
           </Box>
           <Form />
+          <Box sx={{display: "flex", justifyContent: "space-around"}}>
+            <Typography>COPYRIGHT 2023 - MENTION LEGALES</Typography>
+            <Typography>Durhack Company - Wild Team</Typography>
+          </Box>
     </Box>
   )
 }

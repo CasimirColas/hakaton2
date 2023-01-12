@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useRef, useEffect, useState, useContext } from 'react';
+import dynamic from 'next/dynamic';
+const AddressAutofill = dynamic(() => import('@mapbox/search-js-react').then((mod) => mod.AddressAutofill), {
+  ssr: false,
+});
 import { Card, Button, Stack, TextField, Typography, Box, Checkbox, FormControlLabel } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -7,8 +11,46 @@ import dayjs, { Dayjs } from 'dayjs';
 import BestSale from './bestSale';
 import Marquee from "react-fast-marquee";
 import Search from "./search";
+import axios from 'axios';
+import DepartureInput from './DepartureInput';
+
 
 function Form() {
+
+    const [departureAddress, setDepartureAddress] = useState();
+    const [geoLocLoading, setGeoLocLoading] = useState(false);
+    const destinationRef = useRef();
+
+    const accessToken = process.env.NEXT_PUBLIC_MAPBOX_API_KEY;
+
+    const handleGeoLoc = () => {
+        setGeoLocLoading(true);
+        const success = async (data) => {
+          const coord = data.coords;
+          const endpoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${coord.longitude},${coord.latitude}.json?access_token=${accessToken}`;
+          const res = await axios.get(endpoint);
+          const base = res.data.features[0];
+          setDepartureAddress({
+            address: `${base.address} ${base.text}`,
+            city: base.context[1].text,
+            country: base.context[3].text,
+            coord: [coord.longitude, coord.latitude],
+          });
+          setGeoLocLoading(false);
+        };
+        navigator.geolocation.getCurrentPosition(success);
+      };
+
+      const handleDeparture = async (e) => {
+        const data = e.features[0].properties;
+        setDepartureAddress({
+          address: data.address_line1,
+          city: data.place,
+          country: data.country,
+          coord: e.features[0].geometry.coordinates,
+        });
+      };
+
     const [value, setValue] = React.useState<Dayjs | null>(
         dayjs('2014-08-18T21:11:54'),
       );
@@ -27,7 +69,22 @@ function Form() {
             width: 'min(95vw, 800px)',
             boxShadow: '0px 5px 5px black'}}>
             <Stack sx={{p: "20px"}}>
-                <TextField id="outlined-basic" label="Place of Rental" variant="outlined" />
+            <DepartureInput
+                  accessToken={accessToken}
+                  departureAddress={departureAddress}
+                  handleDeparture={handleDeparture}
+                  geoLocLoading={geoLocLoading}
+                  handleGeoLoc={handleGeoLoc}
+                />
+
+                <AddressAutofill
+                  accessToken={accessToken}
+                  options={{
+                    language: 'fr',
+                    country: 'FR',
+                  }}
+                >
+                </AddressAutofill>
                 <Box sx={{paddingTop: "20px", display: "flex", justifyContent:"center"}}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
