@@ -1,8 +1,9 @@
+import React from "react";
 import Head from "next/head";
 import CompanyProfile from "../components/companyProfiles/company";
-import UserRentProfile from "../components/userProfiles/userRent";
+import UserProfile from "../components/userProfiles/user";
 
-function ProfilePage() {
+export default function ProfilePage() {
   return (
     <>
       <Head>
@@ -12,10 +13,8 @@ function ProfilePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="main profile">
-        <CompanyProfile />
+        <UserProfile />
       </main>
     </>
   );
 }
-
-export default ProfilePage;

@@ -19,6 +19,7 @@ function CompanyProfile() {
         height: "100vh",
         display: "flex",
         flexDirection: "column",
+        overflow: "scroll",
       }}
     >
       <CompanyInfoEdit />
@@ -53,7 +54,7 @@ function CompanyProfile() {
           </Typography>
         </Paper>
       </Box>
-      <HiredNow />
+      <HiredNow companyName="BSP%20Auto" />
       <Button
         sx={{
           bgcolor: "secondary.main",
