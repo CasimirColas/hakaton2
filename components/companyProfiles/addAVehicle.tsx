@@ -8,25 +8,27 @@ import {
   NativeSelect,
 } from "@mui/material";
 import putNewCar from "../../dynamodb/functionCars/write";
+import { useRouter } from "next/router";
 
 interface Company {
   companyName: string;
 }
 export default function AddAVehicle(props: Company) {
-  const [name, setName] = React.useState("");
+  const router = useRouter();
+  const [carName, setCarName] = React.useState("");
   const [error, setError] = React.useState(false);
-  function handleName(value: string) {
+  function handleCarName(value: string) {
     if (
       /^[a-zA-Z0-9éèàùûêâôë]{1}[a-zA-Z0-9éèàùûêâôë'-\s]*[a-zA-Z0-9éèàùûêâôë]$/.test(
         value
       ) ||
       value === ""
     ) {
-      setName(value);
+      setCarName(value);
       setError(false);
     } else {
       setError(true);
-      setName("");
+      setCarName("");
     }
   }
   const [brand, setBrand] = React.useState("");
@@ -91,7 +93,7 @@ export default function AddAVehicle(props: Company) {
     }
   }
   interface NewCar {
-    name: string;
+    carName: string;
     brand: string;
     companyName: string;
     type: string;
@@ -99,21 +101,22 @@ export default function AddAVehicle(props: Company) {
     energy: string;
     cost: string;
     img: string;
-    status: string;
+    carStatus: string;
   }
   const newCar: NewCar = {
-    name: name,
+    carName: carName,
     brand: brand,
     companyName: props.companyName,
     type: type,
     gearbox: gearBox,
     energy: energy,
     cost: `${price} $`,
-    status: "D",
+    carStatus: "D",
     img: image,
   };
   function createNewVehicle(obj: NewCar) {
     putNewCar(obj);
+    router.push("./profile");
   }
 
   return (
@@ -160,7 +163,7 @@ export default function AddAVehicle(props: Company) {
           label="Model"
           helperText={error ? "Only letters, numbers, space, - and ' " : ""}
           sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
-          onChange={(e) => handleName(e.target.value)}
+          onChange={(e) => handleCarName(e.target.value)}
         />
         <TextField
           color="secondary"
