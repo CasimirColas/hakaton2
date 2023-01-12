@@ -19,7 +19,7 @@ const GREY = {
 const PRIMARY = {
   lighter: "#D1E9FC",
   light: "#CB6333",
-  main: "#BE3C00",
+  main: "#D9D9D9",
   dark: "#852A00",
   darker: "#061B64",
   contrastText: "#fff",
@@ -28,7 +28,7 @@ const PRIMARY = {
 const SECONDARY = {
   lighter: "#D6E4FF",
   light: "#F2826E",
-  main: "#EF634A",
+  main: "#D65A00",
   dark: "#A74533",
   darker: "#091A7A",
   contrastText: "#fff",
@@ -81,13 +81,13 @@ const palette = {
   grey: GREY,
   divider: alpha(GREY[500], 0.24),
   text: {
-    primary: GREY[800],
+    primary: "#33363F",
     secondary: GREY[600],
     disabled: GREY[500],
   },
   background: {
     paper: "#EDE9D0",
-    default: "#F8F2CB",
+    default: "#D9D9D9",
     neutral: GREY[200],
   },
   action: {

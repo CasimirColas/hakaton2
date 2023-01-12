@@ -1,4 +1,5 @@
 // ----------------------------------------------------------------------
+import "@fontsource/roboto";
 
 export function remToPx(value) {
   return Math.round(parseFloat(value) * 16);
@@ -24,7 +25,7 @@ export function responsiveFontSizes({ sm, md, lg }) {
 
 // ----------------------------------------------------------------------
 
-const FONT_PRIMARY = "'Spectral', serif;"; // Google Font
+const FONT_PRIMARY = "'Roboto', sans-serif;"; // Google Font
 // const FONT_SECONDARY = 'CircularStd, sans-serif'; // Local Font
 
 const typography = {
