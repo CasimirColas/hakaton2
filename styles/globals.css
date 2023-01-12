@@ -6,5 +6,6 @@ html,
 body {
    background-image: url('../public/images/backgrounds/hak2background.png');
    background-size: cover;
+   background-attachment: fixed;
    box-sizing: border-box;
 }
