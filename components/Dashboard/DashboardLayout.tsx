@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, CssBaseline, Stack } from '@mui/material';
-
+import { Box, CssBaseline, Stack, Typography } from '@mui/material';
 import Header from './Header';
 import SideBar from './SideBar';
+import ListCars from './listCars';
 
 function DashboardLayout({ children }) {
   // const [mobileOpen, setMobileOpen] = useState(false);
@@ -25,6 +25,7 @@ function DashboardLayout({ children }) {
         }}
       >
         {children}
+        <ListCars />
       </Box>
     </Stack>
   );

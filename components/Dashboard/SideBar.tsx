@@ -57,7 +57,7 @@ function SideBar({ mobileOpen, setMobileOpen }) {
             </ListItemButton>
           </ListItem>
         </Link>
-        <Link href="/dashboard/profile">
+        <Link href="/dashboard/">
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
