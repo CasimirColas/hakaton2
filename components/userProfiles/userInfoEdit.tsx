@@ -13,9 +13,9 @@ import {
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SendIcon from "@mui/icons-material/Send";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import CompanyInfo from "./companyInfo";
+import UserInfo from "./userInfo";
 
-export default function CompanyInfoEdit() {
+export default function UserInfoEdit() {
   const stylePaper: object = {
     sx: { bgcolor: "primary.main", borderRadius: "20px 0 0 20px" },
   };
@@ -37,20 +37,36 @@ export default function CompanyInfoEdit() {
 
       setState({ ...state, [anchor]: open });
     };
-  const [companyName, setCompanyName] = React.useState("");
+  const [firstname, setfirstName] = React.useState("");
   const [error, setError] = React.useState(false);
-  function handleCompanyName(value: string) {
+  function handlefirstName(value: string) {
     if (
-      /^[a-zA-Z0-9éèàùûêâôë]{1}[a-zA-Z0-9éèàùûêâôë'-\s]*[a-zA-Z0-9éèàùûêâôë]$/.test(
+      /^[a-zA-Zéèàùûêâôë]{1}[a-zA-Zéèàùûêâôë-]*[a-zA-Zéèàùûêâôë]$/.test(
         value
       ) ||
       value === ""
     ) {
-      setCompanyName(value);
+      setfirstName(value);
       setError(false);
     } else {
       setError(true);
-      setCompanyName("");
+      setfirstName("");
+    }
+  }
+  const [lastname, setLastName] = React.useState("");
+  const [error7, setError7] = React.useState(false);
+  function handleLastName(value: string) {
+    if (
+      /^[a-zA-Zéèàùûêâôë]{1}[a-zA-Zéèàùûêâôë-\s]*[a-zA-Zéèàùûêâôë]$/.test(
+        value
+      ) ||
+      value === ""
+    ) {
+      setLastName(value);
+      setError7(false);
+    } else {
+      setError7(true);
+      setLastName("");
     }
   }
   const [email, setEmail] = React.useState("");
@@ -124,31 +140,15 @@ export default function CompanyInfoEdit() {
       setCity("");
     }
   }
-  const [website, setWebsite] = React.useState("");
-  const [error6, setError6] = React.useState(false);
-  function handleWebsite(value: string) {
-    if (
-      /^(http(s):\/\/.)[-a-z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(
-        value
-      ) ||
-      value === ""
-    ) {
-      setWebsite(value);
-      setError6(false);
-    } else {
-      setError6(true);
-      setWebsite("");
-    }
-  }
 
   const infoToSend: object = {
-    companyName: companyName,
+    firstname: firstname,
+    lastname: lastname,
     email: email,
     phone: number,
     password: password,
     adress: adress,
     city: city,
-    website: website,
   };
 
   const list = () => (
@@ -163,7 +163,7 @@ export default function CompanyInfoEdit() {
       }}
       role="menu"
     >
-      <CompanyInfo />
+      <UserInfo />
       <Accordion
         sx={{
           bgcolor: "inherit",
@@ -193,10 +193,19 @@ export default function CompanyInfoEdit() {
               color="secondary"
               size="small"
               id="Name"
-              label="Company Name"
-              helperText={error ? "Only letters and numbers" : ""}
+              label="Firstname"
+              helperText={error ? "Only letters and -" : ""}
               sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
-              onChange={(e) => handleCompanyName(e.target.value)}
+              onChange={(e) => handlefirstName(e.target.value)}
+            />
+            <TextField
+              color="secondary"
+              size="small"
+              id="Lastname"
+              label="Lastname"
+              helperText={error7 ? "Only letters and -" : ""}
+              sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
+              onChange={(e) => handleLastName(e.target.value)}
             />
             <TextField
               color="secondary"
@@ -251,17 +260,6 @@ export default function CompanyInfoEdit() {
               helperText={error5 ? "Only letters, spaces, ' or -" : ""}
               sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
               onChange={(e) => handleCity(e.target.value)}
-            />
-            <TextField
-              color="secondary"
-              size="small"
-              id="Website"
-              label="Website"
-              helperText={
-                error6 ? "Enter a valid format like : www.example-12.com" : ""
-              }
-              sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
-              onChange={(e) => handleWebsite(e.target.value)}
             />
           </FormControl>
           <Button

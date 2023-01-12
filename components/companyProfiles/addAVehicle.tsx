@@ -9,20 +9,20 @@ import {
 } from "@mui/material";
 
 export default function AddAVehicle() {
-  const [model, setModel] = React.useState("");
+  const [name, setName] = React.useState("");
   const [error, setError] = React.useState(false);
-  function handleModel(value: string) {
+  function handleName(value: string) {
     if (
       /^[a-zA-Z0-9éèàùûêâôë]{1}[a-zA-Z0-9éèàùûêâôë'-\s]*[a-zA-Z0-9éèàùûêâôë]$/.test(
         value
       ) ||
       value === ""
     ) {
-      setModel(value);
+      setName(value);
       setError(false);
     } else {
       setError(true);
-      setModel("");
+      setName("");
     }
   }
   const [brand, setBrand] = React.useState("");
@@ -53,23 +53,55 @@ export default function AddAVehicle() {
       setEnergy(value);
     }
   }
+  const [type, setType] = React.useState("");
+  function handleType(value: string) {
+    if (value != "") {
+      setType(value);
+    }
+  }
+  const [price, setPrice] = React.useState("");
+  const [error2, setError2] = React.useState(false);
+  function handlePrice(value: string) {
+    if (/^[0-9]{1}[0-9\s]*[0-9]$/.test(value) || value === "") {
+      setPrice(value);
+      setError2(false);
+    } else {
+      setError2(true);
+      setPrice("");
+    }
+  }
+  const [image, setImage] = React.useState("");
+  const [error3, setError3] = React.useState(false);
+  function handleImage(value: string) {
+    if (
+      /^(http(s):\/\/.)[-a-z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(
+        value
+      ) ||
+      value === ""
+    ) {
+      setImage(value);
+      setError3(false);
+    } else {
+      setError3(true);
+      setImage("");
+    }
+  }
   return (
     <Box
-      className="AddCart"
       sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
         height: "80vh",
         width: "95vw",
         bgcolor: "primary.main",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         border: "3px solid #D65A00",
         boxShadow: 24,
         borderRadius: "10px",
       }}
     >
       <Typography
+        id="modal-modal-title"
         align="center"
         variant="h4"
         sx={{
@@ -82,21 +114,23 @@ export default function AddAVehicle() {
         ADD A NEW VEHICLE
       </Typography>
       <FormControl
+        aria-describedby="modal-modal-description"
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          overflow: "scroll",
         }}
         onSubmit={(event) => event.preventDefault()}
       >
         <TextField
           color="secondary"
           size="small"
-          id="model"
+          id="Name"
           label="Model"
           helperText={error ? "Only letters, numbers, space, - and ' " : ""}
           sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
-          onChange={(e) => handleModel(e.target.value)}
+          onChange={(e) => handleName(e.target.value)}
         />
         <TextField
           color="secondary"
@@ -107,6 +141,29 @@ export default function AddAVehicle() {
           sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
           onChange={(e) => handleBrand(e.target.value)}
         />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            margin: "1rem",
+            width: "60vw",
+          }}
+        >
+          <Typography sx={{ margin: "0 1rem" }}>Type</Typography>
+          <NativeSelect
+            sx={{ bgcolor: "white", width: "40vw", marginLeft: "1.5rem" }}
+            id="Type input"
+            value={type}
+            onChange={(event: { target: { value: string } }) =>
+              handleType(event.target.value)
+            }
+          >
+            <option aria-label="None" value="" />
+            <option value={"C"}>Classic</option>
+            <option value={"U"}>Utility</option>
+            <option value={"P"}>Prestige</option>
+          </NativeSelect>
+        </div>
         <div
           style={{
             display: "flex",
@@ -139,7 +196,11 @@ export default function AddAVehicle() {
         >
           <Typography sx={{ margin: "0 1rem" }}>Energy</Typography>
           <NativeSelect
-            sx={{ bgcolor: "white", width: "40vw", marginLeft: "1rem" }}
+            sx={{
+              bgcolor: "white",
+              width: "40vw",
+              marginLeft: "1rem",
+            }}
             id="Energy input"
             value={energy}
             onChange={(event: { target: { value: string } }) =>
@@ -149,11 +210,34 @@ export default function AddAVehicle() {
             <option aria-label="None" value="" />
             <option value={"L"}>Lead Free</option>
             <option value={"D"}>Diesel</option>
-            <option value={"E"}>Electri</option>
+            <option value={"E"}>Electric</option>
             <option value={"H"}>Hybrid</option>
           </NativeSelect>
         </div>
+        <TextField
+          color="secondary"
+          size="small"
+          id="price"
+          label="Price"
+          helperText={error2 ? "Only space or numbers" : ""}
+          sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
+          onChange={(e) => handlePrice(e.target.value)}
+        />
+        <TextField
+          color="secondary"
+          size="small"
+          id="image"
+          label="Image URL"
+          helperText={error3 ? "Invalid URL" : ""}
+          sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
+          onChange={(e) => handleImage(e.target.value)}
+        />
       </FormControl>
+      <Button
+        sx={{ bgcolor: "secondary.main", borderRadius: 0, width: "20vh" }}
+      >
+        Create
+      </Button>
     </Box>
   );
 }

@@ -86,7 +86,7 @@ const palette = {
     disabled: GREY[500],
   },
   background: {
-    paper: "#EDE9D0",
+    paper: "#FFFFFF",
     default: "#D9D9D9",
     neutral: GREY[200],
   },
