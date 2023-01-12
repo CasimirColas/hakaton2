@@ -16,7 +16,6 @@ async function addParams(i){
   async function updateUser(email,toBeUpdated){
   
   const modifs = await addParams(toBeUpdated)
-   console.log(modifs.string);
   const params = {
       TableName: "sherlockationUsers",
       Key: {
@@ -33,7 +32,6 @@ async function addParams(i){
           }
           const data = await ddbClient.send(new UpdateItemCommand(params))
           console.log(data);
-          
   }
 
 export default updateUser;
