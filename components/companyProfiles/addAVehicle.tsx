@@ -7,8 +7,12 @@ import {
   TextField,
   NativeSelect,
 } from "@mui/material";
+import putNewCar from "../../dynamodb/functionCars/write";
 
-export default function AddAVehicle() {
+interface Company {
+  companyName: string;
+}
+export default function AddAVehicle(props: Company) {
   const [name, setName] = React.useState("");
   const [error, setError] = React.useState(false);
   function handleName(value: string) {
@@ -86,6 +90,32 @@ export default function AddAVehicle() {
       setImage("");
     }
   }
+  interface NewCar {
+    name: string;
+    brand: string;
+    companyName: string;
+    type: string;
+    gearbox: string;
+    energy: string;
+    cost: string;
+    img: string;
+    status: string;
+  }
+  const newCar: NewCar = {
+    name: name,
+    brand: brand,
+    companyName: props.companyName,
+    type: type,
+    gearbox: gearBox,
+    energy: energy,
+    cost: `${price} $`,
+    status: "D",
+    img: image,
+  };
+  function createNewVehicle(obj: NewCar) {
+    putNewCar(obj);
+  }
+
   return (
     <Box
       sx={{
@@ -235,6 +265,7 @@ export default function AddAVehicle() {
       </FormControl>
       <Button
         sx={{ bgcolor: "secondary.main", borderRadius: 0, width: "20vh" }}
+        onClick={() => createNewVehicle(newCar)}
       >
         Create
       </Button>

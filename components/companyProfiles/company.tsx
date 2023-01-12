@@ -54,7 +54,7 @@ function CompanyProfile() {
           </Typography>
         </Paper>
       </Box>
-      <HiredNow companyName="BSP%20Auto" />
+      <HiredNow companyName="w auto sport" />
       <Button
         sx={{
           bgcolor: "secondary.main",
@@ -87,7 +87,7 @@ function CompanyProfile() {
             borderRadius: "10px",
           }}
         >
-          <AddAVehicle />
+          <AddAVehicle companyName="w auto sport" />
         </Box>
       </Modal>
     </Box>

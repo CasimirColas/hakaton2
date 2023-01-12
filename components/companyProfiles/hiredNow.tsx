@@ -20,6 +20,7 @@ import Brightness1Icon from "@mui/icons-material/Brightness1";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Button from "@mui/material/Button";
+import deleteCarById from "../../dynamodb/functionCars/delete";
 
 interface Vehicle {
   img: string;
@@ -49,21 +50,29 @@ export default function HiredNow(props: Company) {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  function handleClose() {
     setOpen(false);
-  };
+  }
   const [checked, setChecked] = React.useState(true);
   const [refresh, setRefresh] = React.useState(true);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
+  function handleChange(value: string) {
+    if (value === "D") {
+      console.log("dispo");
+    } else if (value === "I") {
+      console.log("indispo");
+    }
     setRefresh(!refresh);
-  };
+  }
   const [vehicleList, setVehicleList] = React.useState([]);
   React.useEffect(() => {
     getCarsCompany(props.companyName).then((result) => {
       setVehicleList(result.sort());
     });
   }, [refresh, props.companyName]);
+  function deleteCar(id: String) {
+    handleClose();
+    deleteCarById(id);
+  }
   return (
     <Box sx={{ m: "5vh 5vw" }}>
       <Typography variant="h3" align="left">
@@ -102,12 +111,16 @@ export default function HiredNow(props: Company) {
                       value="start"
                       control={
                         <Switch
-                          checked={checked}
-                          onChange={handleChange}
+                          checked={vehicle.status.includes("D") ? true : false}
+                          onChange={() => handleChange(vehicle.status)}
                           color="primary"
                         />
                       }
-                      label={checked ? "Available" : "Not Available"}
+                      label={
+                        vehicle.status.includes("D")
+                          ? "Available"
+                          : "Not Available"
+                      }
                       labelPlacement="start"
                     />
                     <Brightness1Icon
@@ -191,13 +204,13 @@ export default function HiredNow(props: Company) {
                       <DialogActions>
                         <Button
                           sx={{ color: "secondary.main" }}
-                          onClick={handleClose}
+                          onClick={() => handleClose()}
                         >
                           Non
                         </Button>
                         <Button
                           sx={{ color: "secondary.main" }}
-                          onClick={handleClose}
+                          onClick={() => deleteCar(vehicle.id)}
                           autoFocus
                         >
                           Oui

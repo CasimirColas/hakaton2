@@ -13,7 +13,7 @@ export default function ProfilePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="main profile">
-        <UserProfile />
+        <CompanyProfile />
       </main>
     </>
   );
