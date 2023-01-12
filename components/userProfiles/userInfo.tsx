@@ -1,22 +1,23 @@
 import React from "react";
 import { Typography, Box, List, ListItemText } from "@mui/material";
 
-interface Company {
-  companyName: string;
+interface User {
+  lastname: string;
+  firstname: string;
   email: string;
   phone: string;
   adress: string;
   city: string;
-  website: string;
 }
-export default function CompanyInfo() {
-  const company: Company = {
-    companyName: "Wild Car Service",
-    email: "company@companyemail.com",
+
+export default function UserInfo() {
+  const user: User = {
+    firstname: "Yavuz",
+    lastname: "Kutuk",
+    email: "best-car@wsc.com",
     phone: "06 51 12 26 67",
     adress: "88 rue Mils Haleur",
     city: "Strasbourg",
-    website: "http://wild-car-service.com",
   };
 
   return (
@@ -28,7 +29,7 @@ export default function CompanyInfo() {
       >
         Yours Informations
       </Typography>
-      {company ? (
+      {user ? (
         <List
           sx={{
             display: "flex",
@@ -37,14 +38,13 @@ export default function CompanyInfo() {
           }}
         >
           <ListItemText
-            primary="Company Name"
-            secondary={company.companyName}
+            primary="Name"
+            secondary={`${user.firstname} - ${user.lastname}`}
           />
-          <ListItemText primary="Email" secondary={company.email} />
-          <ListItemText primary="Phone" secondary={company.phone} />
-          <ListItemText primary="Adress" secondary={company.adress} />
-          <ListItemText primary="City" secondary={company.city} />
-          <ListItemText primary="Website" secondary={company.website} />
+          <ListItemText primary="Email" secondary={user.email} />
+          <ListItemText primary="Phone" secondary={user.phone} />
+          <ListItemText primary="Adress" secondary={user.adress} />
+          <ListItemText primary="City" secondary={user.city} />
         </List>
       ) : (
         "Please wait a moment. Or reload the page."

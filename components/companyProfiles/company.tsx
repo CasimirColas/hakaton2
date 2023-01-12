@@ -6,6 +6,7 @@ import imageWCS from "../../public/images/wscImage.png";
 import CompanyInfoEdit from "./companyInfoEdit";
 import AddAVehicle from "./addAVehicle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import HiredNow from "./hiredNow";
 
 function CompanyProfile() {
   const [open, setOpen] = React.useState(false);
@@ -18,15 +19,16 @@ function CompanyProfile() {
         height: "100vh",
         display: "flex",
         flexDirection: "column",
+        overflow: "scroll",
       }}
     >
-      <CompanyInfoEdit />
+      <CompanyInfoEdit email="company@companyemail.com" />
       <Box
         className="companyInformation"
         sx={{
           height: "45vh",
           display: "flex",
-          paddingTop: "10vh",
+          paddingTop: "5vh",
           flexDirection: "column",
           alignItems: "center",
         }}
@@ -43,7 +45,7 @@ function CompanyProfile() {
             height: "auto",
             p: ".5rem",
             bgcolor: "transparent",
-            marginBottom: "1rem",
+            margin: "1rem",
             boxShadow: "1px 1px 6px 1px rgba(0,0,0,0.69)",
           }}
         >
@@ -52,6 +54,7 @@ function CompanyProfile() {
           </Typography>
         </Paper>
       </Box>
+      <HiredNow companyName="w auto sport" />
       <Button
         sx={{
           bgcolor: "secondary.main",
@@ -66,8 +69,26 @@ function CompanyProfile() {
         <Typography>Add a vehicle</Typography>
         <AddCircleIcon />
       </Button>
-      <Modal open={open} onClose={handleClose}>
-        <AddAVehicle />
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            height: "80vh",
+            width: "95vw",
+            bgcolor: "primary.main",
+            borderRadius: "10px",
+          }}
+        >
+          <AddAVehicle companyName="w auto sport" />
+        </Box>
       </Modal>
     </Box>
   );
