@@ -3,19 +3,23 @@ import awsConfig from "../connection";
 import getUserByEmail from "./read";
 const ddbClient = new DynamoDBClient(awsConfig);
 
-async function putNewUserEmailPassRole(email,password,role){
+async function createItem(email,i){
+    const item = {email:{S:email}}
+    for (const [key, value] of Object.entries(i)) {
+        item[key] = {S:value}
+    }
+    return item
+  }
 
+async function putNewUserEmail(email,obj){
+    const items = await createItem(email,obj)
     const params = {
         TableName:'sherlockationUsers',
-        Item: {
-            email: { S: email },
-            password: { S: password },
-            role: {S:role}
-            },
+        Item: items,
     }
         const potentialUser = await getUserByEmail(email)
         if(potentialUser){
-            throw new Error("User already exists");           
+            return "User already exists"
         }else{
         ddbClient.send(new PutItemCommand(params))
         }
@@ -23,4 +27,4 @@ async function putNewUserEmailPassRole(email,password,role){
         
 }
 
-export default putNewUserEmailPassRole;
+export default putNewUserEmail;
