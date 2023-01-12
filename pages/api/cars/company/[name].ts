@@ -20,7 +20,11 @@ export default async function handler(
     const cars = await getCarByCompanyName(name)
     if(cars){
         const resJSON = await cars?.map((e)=>convertToJSON(e))
-        res.status(200).json(resJSON);
+        if(resJSON.length===0){
+            res.status(404).json("This company is not in the database");
+        }else{
+            res.status(200).json(resJSON);
+        }
     }else{
         res.status(404).json("This car is not the data base");
     }
