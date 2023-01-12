@@ -13,13 +13,9 @@ import {
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SendIcon from "@mui/icons-material/Send";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import CompanyInfo from "./companyInfo";
-import updateUser from "../../dynamodb/functionUser/update";
-interface Company {
-  email: string;
-}
+import UserInfo from "./userInfo";
 
-export default function CompanyInfoEdit(props: Company) {
+export default function UserInfoEdit() {
   const stylePaper: object = {
     sx: { bgcolor: "primary.main", borderRadius: "20px 0 0 20px" },
   };
@@ -41,20 +37,47 @@ export default function CompanyInfoEdit(props: Company) {
 
       setState({ ...state, [anchor]: open });
     };
-  const [companyName, setCompanyName] = React.useState("");
+  const [firstname, setfirstName] = React.useState("");
   const [error, setError] = React.useState(false);
-  function handleCompanyName(value: string) {
+  function handlefirstName(value: string) {
     if (
-      /^[a-zA-Z0-9éèàùûêâôë]{1}[a-zA-Z0-9éèàùûêâôë'-\s]*[a-zA-Z0-9éèàùûêâôë]$/.test(
+      /^[a-zA-Zéèàùûêâôë]{1}[a-zA-Zéèàùûêâôë-]*[a-zA-Zéèàùûêâôë]$/.test(
         value
       ) ||
       value === ""
     ) {
-      setCompanyName(value);
+      setfirstName(value);
       setError(false);
     } else {
       setError(true);
-      setCompanyName("");
+      setfirstName("");
+    }
+  }
+  const [lastname, setLastName] = React.useState("");
+  const [error7, setError7] = React.useState(false);
+  function handleLastName(value: string) {
+    if (
+      /^[a-zA-Zéèàùûêâôë]{1}[a-zA-Zéèàùûêâôë-\s]*[a-zA-Zéèàùûêâôë]$/.test(
+        value
+      ) ||
+      value === ""
+    ) {
+      setLastName(value);
+      setError7(false);
+    } else {
+      setError7(true);
+      setLastName("");
+    }
+  }
+  const [email, setEmail] = React.useState("");
+  const [error1, setError1] = React.useState(false);
+  function handleEmail(value: string) {
+    if (/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(value) || value === "") {
+      setEmail(value);
+      setError1(false);
+    } else {
+      setError1(true);
+      setEmail("");
     }
   }
   const [number, setNumber] = React.useState("");
@@ -117,44 +140,17 @@ export default function CompanyInfoEdit(props: Company) {
       setCity("");
     }
   }
-  const [website, setWebsite] = React.useState("");
-  const [error6, setError6] = React.useState(false);
-  function handleWebsite(value: string) {
-    if (
-      /^(http(s):\/\/.)[-a-z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(
-        value
-      ) ||
-      value === ""
-    ) {
-      setWebsite(value);
-      setError6(false);
-    } else {
-      setError6(true);
-      setWebsite("");
-    }
-  }
 
-  interface Company {
-    companyName: string;
-    email: string;
-    phone: string;
-    password: string;
-    adress: string;
-    city: string;
-    website: string;
-  }
-  const infoToSend: Company = {
-    companyName: companyName,
-    email: props.email,
+  const infoToSend: object = {
+    firstname: firstname,
+    lastname: lastname,
+    email: email,
     phone: number,
     password: password,
     adress: adress,
     city: city,
-    website: website,
   };
-  function EditProfile(email: string, obj: Company) {
-    updateUser(email, obj);
-  }
+
   const list = () => (
     <Box
       sx={{
@@ -167,7 +163,7 @@ export default function CompanyInfoEdit(props: Company) {
       }}
       role="menu"
     >
-      <CompanyInfo />
+      <UserInfo />
       <Accordion
         sx={{
           bgcolor: "inherit",
@@ -197,10 +193,32 @@ export default function CompanyInfoEdit(props: Company) {
               color="secondary"
               size="small"
               id="Name"
-              label="Company Name"
-              helperText={error ? "Only letters and numbers" : ""}
+              label="Firstname"
+              helperText={error ? "Only letters and -" : ""}
               sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
-              onChange={(e) => handleCompanyName(e.target.value)}
+              onChange={(e) => handlefirstName(e.target.value)}
+            />
+            <TextField
+              color="secondary"
+              size="small"
+              id="Lastname"
+              label="Lastname"
+              helperText={error7 ? "Only letters and -" : ""}
+              sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
+              onChange={(e) => handleLastName(e.target.value)}
+            />
+            <TextField
+              color="secondary"
+              size="small"
+              id="Email"
+              label="Email"
+              helperText={
+                error1
+                  ? "Enter a correct Email form like : example@example.com"
+                  : ""
+              }
+              sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
+              onChange={(e) => handleEmail(e.target.value)}
             />
             <TextField
               color="secondary"
@@ -243,17 +261,6 @@ export default function CompanyInfoEdit(props: Company) {
               sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
               onChange={(e) => handleCity(e.target.value)}
             />
-            <TextField
-              color="secondary"
-              size="small"
-              id="Website"
-              label="Website"
-              helperText={
-                error6 ? "Enter a valid format like : www.example-12.com" : ""
-              }
-              sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
-              onChange={(e) => handleWebsite(e.target.value)}
-            />
           </FormControl>
           <Button
             sx={{
@@ -264,7 +271,6 @@ export default function CompanyInfoEdit(props: Company) {
               alignItems: "center",
             }}
             variant="text"
-            onClick={() => EditProfile(props.email, infoToSend)}
           >
             <Typography sx={{ m: ".5rem" }}>Send</Typography>
             <SendIcon />
