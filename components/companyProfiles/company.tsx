@@ -1,23 +1,30 @@
 import React from "react";
 import Image from "next/image";
-import { Typography, Box, Paper } from "@mui/material";
+import { Typography, Box, Paper, Button, Modal } from "@mui/material";
 import "@fontsource/righteous";
 import imageWCS from "../../public/images/wscImage.png";
-import CompanyInfoEdit from "../companyProfil/companyInfo";
+import CompanyInfoEdit from "./companyInfoEdit";
+import AddAVehicle from "./addAVehicle";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 function CompanyProfile() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <Box
       sx={{
         width: "100vw",
         height: "100vh",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <CompanyInfoEdit />
       <Box
         className="companyInformation"
         sx={{
-          height: "25vh",
+          height: "45vh",
           display: "flex",
           paddingTop: "10vh",
           flexDirection: "column",
@@ -45,6 +52,23 @@ function CompanyProfile() {
           </Typography>
         </Paper>
       </Box>
+      <Button
+        sx={{
+          bgcolor: "secondary.main",
+          position: "fixed",
+          m: "2rem 1rem",
+          p: ".5rem",
+          right: 0,
+          bottom: 0,
+        }}
+        onClick={() => handleOpen()}
+      >
+        <Typography>Add a vehicle</Typography>
+        <AddCircleIcon />
+      </Button>
+      <Modal open={open} onClose={handleClose}>
+        <AddAVehicle />
+      </Modal>
     </Box>
   );
 }

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import CompanyProfile from "../components/userProfiles/company";
+import CompanyProfile from "../components/companyProfiles/company";
 import UserRentProfile from "../components/userProfiles/userRent";
 
 function ProfilePage() {
