@@ -21,20 +21,27 @@ export default NextAuth({
             case "admin":
               return {
                 email: myUser.email.S,
-                name:myUser.lastName.S,
+                name:"admin",
                 role: myUser.role.S,
               };
               case "user":
                 return {
                   email: myUser.email.S,
-                  name:"admin",
+                  name:myUser.lastName.S,
                   role: myUser.role.S,
+                  city: myUser.city.S,
+                  phone: myUser.phone.S,
+                  adress: myUser.adress.S,
                 };
                 case "company":
                   return {
                     email: myUser.email.S,
                     name:myUser.companyName.S,
                     role: myUser.role.S,
+                    city: myUser.city.S,
+                    phone: myUser.phone.S,
+                    adress: myUser.adress.S,
+                    website:myUser.website.S
                   };
             default:
               return null
