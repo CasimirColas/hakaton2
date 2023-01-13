@@ -47,13 +47,12 @@ const columns: GridColDef[] = [
   
 
 function ListUsers() {
-
-    
+  
   useEffect(() => {
     const fetchData = async () => {
       const data = await getAllUsers();
       
-    console.log(getAllUsers)
+    console.log(data)
     }
     
     fetchData()
