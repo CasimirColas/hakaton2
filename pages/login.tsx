@@ -106,7 +106,7 @@ function LoginPage() {
         </button>
         <p className={styles.noAccount}>
           Don't have an account?&nbsp;
-          <Link href="/signin" className={styles.link}>
+          <Link href="/signup" className={styles.link}>
             Sign up
           </Link>
         </p>
