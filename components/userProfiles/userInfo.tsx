@@ -1,4 +1,5 @@
 import React from "react";
+import { useSession } from "next-auth/react";
 import { Typography, Box, List, ListItemText } from "@mui/material";
 
 interface User {
@@ -11,7 +12,8 @@ interface User {
 }
 
 export default function UserInfo() {
-  const user: User = {
+  const { data } = useSession();
+  const user: User | null = {
     firstname: "Yavuz",
     lastname: "Kutuk",
     email: "best-car@wsc.com",

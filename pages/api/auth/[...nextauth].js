@@ -11,17 +11,17 @@ export default NextAuth({
       type: "credentials",
       credentials: {},
       async authorize(credentials) {
-        const { email, password } = credentials 
+        const { email, password } = credentials;
         const myUser = await getUserByEmail(email);
-        if(!myUser){
+        if (!myUser) {
           throw new Error("User not found");
         }
-        if(myUser.password.S===password){
+        if (myUser.password.S === password) {
           return {
-            email:myUser.email.S,
-            role:myUser.role.S,
-          }
-        }else{
+            email: myUser.email.S,
+            role: myUser.role.S,
+          };
+        } else {
           throw new Error("Incorrect password");
         }
       },

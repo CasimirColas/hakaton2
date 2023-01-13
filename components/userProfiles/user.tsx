@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Typography, Box, Paper } from "@mui/material";
 import imageWCS from "../../public/images/wscImage.png";
 import UserInfoEdit from "./userInfoEdit";
+import Historic from "./historic";
 
 function UserProfile() {
   return (
@@ -14,7 +15,7 @@ function UserProfile() {
         flexDirection: "column",
       }}
     >
-      <UserInfoEdit />
+      <UserInfoEdit email="bob@example.com" />
       <Box
         className="UserInformation"
         sx={{
@@ -27,7 +28,7 @@ function UserProfile() {
       >
         <Image
           src={imageWCS}
-          alt="Picture of a company"
+          alt="Picture of User"
           width="150"
           height="150"
           style={{ borderRadius: "100px", border: "2px solid #D65A00" }}
@@ -47,6 +48,7 @@ function UserProfile() {
           </Typography>
         </Paper>
       </Box>
+      <Historic />
     </Box>
   );
 }
