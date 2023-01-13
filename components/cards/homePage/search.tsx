@@ -53,7 +53,7 @@ export default function MediaCard() {
       sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around" }}
     >
       {data.map((car: any) => (
-        <Card key={car.id} sx={{ maxWidth: 345, minWidth: 340 }}>
+        <Card key={car.id} sx={{ maxWidth: 345, minWidth: 340, marginTop: "10px" }}>
           <CardMedia
             sx={{ height: 140 }}
             image={car.img}
@@ -89,13 +89,12 @@ export default function MediaCard() {
                 <Typography>Show more</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  {car.gearbox}
-                  {car.energy} Sale By {car.companyName}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
+              <Typography>
+              <Typography variant="h4">Sale By {car.companyName}</Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+              eget.
+            </Typography>
               </AccordionDetails>
             </Accordion>
           ) : (

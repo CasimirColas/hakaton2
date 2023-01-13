@@ -1,64 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
-import useSWR from 'swr';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import getAllUsers from '../../dynamodb/functionUser/readAll';
 
-const fetcher = async () => {
-    const response = await fetch('http://localhost:3000/api/cars')
-    const data = await response.json()
-    return data
-}
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
-      field: 'Brand',
-      headerName: 'Brand',
+      field: 'lastname',
+      headerName: 'Lastname',
       width: 150,
       editable: true,
     },
     {
-      field: 'CompanyName',
-      headerName: 'CompanyName',
+      field: 'firstname',
+      headerName: 'Firstname',
       width: 150,
       editable: true,
     },
     {
-      field: 'carName',
-      headerName: 'CarName',
+      field: 'email',
+      headerName: 'Email',
       width: 110,
       editable: true,
     },
     {
-        field: 'carStatus',
-        headerName: 'Status',
+        field: 'phone',
+        headerName: 'Phone',
         width: 80,
         editable: true,
       },
       {
-        field: 'cost',
-        headerName: 'Cost',
+        field: 'adress',
+        headerName: 'Adress',
         width: 80,
         editable: true,
       },
       {
-        field: 'type',
-        headerName: 'Type',
+        field: 'city',
+        headerName: 'City',
         width: 80,
         editable: true,
-      },
-      {
-        field: 'gearbox',
-        headerName: 'Gearbox',
-        width: 80,
-        editable: true,
-      },
-      {
-        field: 'energy',
-        headerName: 'energy',
-        width: 80,
-        editable: true,
-      },
+      }
   ];
 
   
@@ -66,21 +49,25 @@ const columns: GridColDef[] = [
 function ListUsers() {
 
     
-    const { data, error, isLoading } = useSWR('/api/cars', fetcher)
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getAllUsers();
+      
+    console.log(getAllUsers)
+    }
     
-    if (error) return <div>failed to load</div>
-    if (isLoading) return <div>loading...</div>
-    console.log(data)
+    fetchData()
+      .catch(console.error);
+  }, []);
 
     const rows = data.map((user:any) =>({
         id:user.id,
-        CompanyName:user.companyName,
-        carName:user.carName,
-        carStatus:user.carStatus,
-        cost:user.cost,
-        type:user.type,
-        gearbox:user.gearbox,
-        energy:user.enrgy
+        lastname:user.lastname,
+        firstname:user.firstname,
+        email:user.email,
+        phone:user.phone,
+        adress:user.adress,
+        city:user.city
     } ))
 
     return (

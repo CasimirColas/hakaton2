@@ -81,7 +81,7 @@ function ListCars() {
         cost:car.cost,
         type:car.type,
         gearbox:car.gearbox,
-        energy:car.enrgy
+        energy:car.energy
     } ))
 
     return (

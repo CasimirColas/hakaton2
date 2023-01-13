@@ -13,7 +13,7 @@ function BestSale () {
     return (
     <Box>
         {cars.map((car, index) => (
-            <Stack sx={{ width: 500, height: 350 }}>
+            <Stack sx={{ width: 500, height: 350, paddingLeft: "20px" }}>
                 <Typography variant="h3" sx={{backgroundColor:"#D65A00", position:"absolute", borderRadius:"10px", p: "3px", opacity:"70%", marginLeft: "1.5%"}}>{car.nameModel} - {car.nameCar}</Typography>
                 <img src={car.img} />
                 <Box sx={{position: "absolute", paddingTop:"8.5%", paddingLeft:"10%"}}>
