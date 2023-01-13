@@ -17,10 +17,28 @@ export default NextAuth({
           throw new Error("User not found");
         }
         if (myUser.password.S === password) {
-          return {
-            email: myUser.email.S,
-            role: myUser.role.S,
-          };
+          switch (myUser.role.S) {
+            case "admin":
+              return {
+                email: myUser.email.S,
+                name:myUser.lastName.S,
+                role: myUser.role.S,
+              };
+              case "user":
+                return {
+                  email: myUser.email.S,
+                  name:"admin",
+                  role: myUser.role.S,
+                };
+                case "company":
+                  return {
+                    email: myUser.email.S,
+                    name:myUser.companyName.S,
+                    role: myUser.role.S,
+                  };
+            default:
+              return null
+          }
         } else {
           throw new Error("Incorrect password");
         }
@@ -33,12 +51,15 @@ export default NextAuth({
       if (user?.role) {
         token.role = user.role;
       }
+      if (user?.name) {
+        token.name = user.name;
+      }
       // return final_token
       return token;
     },
     session({ session, token }) {
-      const { id, email, role } = { ...token };
-      const userData = { id, email, role };
+      const { id, email, role,name } = { ...token };
+      const userData = { id, email, role,name };
       session.user = userData;
 
       return session;
