@@ -1,5 +1,6 @@
 // ----------------------------------------------------------------------
 import "@fontsource/roboto";
+import "@fontsource/righteous"
 
 export function remToPx(value) {
   return Math.round(parseFloat(value) * 16);

@@ -132,7 +132,7 @@ function Form() {
             </Box>
         </Card>
         </Box>
-        <Typography variant="h2" sx={{paddingLeft:"10%", color:"#D65A00"}}>Best Sale</Typography>
+        <Typography variant="h1" sx={{paddingLeft:"10%", marginBottom:"10px", color:"white", background: 'linear-gradient(to right, #131729, #111524, #101320, #0e111b, #0b0e17, #0b0e17, #0b0e17, #0b0e17, #0e111b, #101320, #111524, #131729)'}}>Best Sale</Typography>
         <Marquee gradient={false} speed={40}>
             <Box sx={{display:"flex", justifyContent:"space-around"}}>
                 <BestSale />
@@ -143,7 +143,7 @@ function Form() {
                 <BestSale />
             </Box>
         </Marquee>
-        <Typography variant="h2" sx={{paddingLeft:"10%", color:"#D65A00"}}>Your Search</Typography>
+        <Typography variant="h1" sx={{paddingLeft:"10%", marginBottom:"10px", color:"white", background: 'linear-gradient(to right, #131729, #111524, #101320, #0e111b, #0b0e17, #0b0e17, #0b0e17, #0b0e17, #0e111b, #101320, #111524, #131729)'}}>Your Search</Typography>
         <Box>
             <Search />
         </Box>

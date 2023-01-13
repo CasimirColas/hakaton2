@@ -1,6 +1,5 @@
 import Head from "next/head";
 import IndexBaseCard from "../components/cards/cardIndex";
-import {Stack} from "@mui/material";
 
 export default function Home() {
   return (
