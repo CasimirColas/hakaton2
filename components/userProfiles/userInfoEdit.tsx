@@ -14,8 +14,11 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SendIcon from "@mui/icons-material/Send";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import UserInfo from "./userInfo";
-
-export default function UserInfoEdit() {
+import updateUser from "../../dynamodb/functionUser/update";
+interface User {
+  email: string;
+}
+export default function UserInfoEdit(props: User) {
   const stylePaper: object = {
     sx: { bgcolor: "primary.main", borderRadius: "20px 0 0 20px" },
   };
@@ -67,17 +70,6 @@ export default function UserInfoEdit() {
     } else {
       setError7(true);
       setLastName("");
-    }
-  }
-  const [email, setEmail] = React.useState("");
-  const [error1, setError1] = React.useState(false);
-  function handleEmail(value: string) {
-    if (/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(value) || value === "") {
-      setEmail(value);
-      setError1(false);
-    } else {
-      setError1(true);
-      setEmail("");
     }
   }
   const [number, setNumber] = React.useState("");
@@ -140,17 +132,27 @@ export default function UserInfoEdit() {
       setCity("");
     }
   }
-
-  const infoToSend: object = {
+  interface User {
+    firstname: string;
+    lastname: string;
+    email: string;
+    phone: string;
+    password: string;
+    adress: string;
+    city: string;
+  }
+  const infoToSend: User = {
     firstname: firstname,
     lastname: lastname,
-    email: email,
+    email: props.email,
     phone: number,
     password: password,
     adress: adress,
     city: city,
   };
-
+  function EditProfile(email: string, obj: User) {
+    updateUser(email, obj);
+  }
   const list = () => (
     <Box
       sx={{
@@ -210,19 +212,6 @@ export default function UserInfoEdit() {
             <TextField
               color="secondary"
               size="small"
-              id="Email"
-              label="Email"
-              helperText={
-                error1
-                  ? "Enter a correct Email form like : example@example.com"
-                  : ""
-              }
-              sx={{ bgcolor: "white", m: "1rem", width: "60vw" }}
-              onChange={(e) => handleEmail(e.target.value)}
-            />
-            <TextField
-              color="secondary"
-              size="small"
               id="Password"
               type="password"
               label="Password"
@@ -271,6 +260,7 @@ export default function UserInfoEdit() {
               alignItems: "center",
             }}
             variant="text"
+            onClick={() => EditProfile(props.email, infoToSend)}
           >
             <Typography sx={{ m: ".5rem" }}>Send</Typography>
             <SendIcon />
